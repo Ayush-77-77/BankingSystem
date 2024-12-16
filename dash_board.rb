@@ -5,7 +5,7 @@ class DashBoard
     puts "3. Search Member"
     puts "4. Transaction"
     puts "5. Exit"
-    print "Please enter the value (1 to 4) : "
+    print "Please enter the value (1 to 5) : "
     service_number = gets.chomp   
     goto_service(service_number)
   end
@@ -17,10 +17,13 @@ class DashBoard
       registration.member_regsitration
     when '2'
       member_details = MemberDetails.new
-    # when '3'
-    #   serch_member = SearchMember.new
-    # when '4'
-    #   transaction =  Transaction.new
+      member_details.all_member_details
+    when '3'
+      serch_member = SearchMember.new
+    when '4'
+      transaction =  Transaction.new
+    when '5'
+      exti()
     else
       puts "Please enter a valid input"
     end

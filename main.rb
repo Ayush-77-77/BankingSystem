@@ -7,8 +7,8 @@ class Main
   
   def login()
     bank_employee = Authentication.new
-    bank_employee.user_authentication?("email", "password")
-    if (bank_employee==true)
+    employee = bank_employee.user_authentication?("test@gmail.com", "test")
+    if (employee == true)
       dashboard = DashBoard.new
       dashboard.dash_service
     else
