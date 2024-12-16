@@ -5,6 +5,8 @@ class Registration
     @full_name = gets.chomp
     print "Age : "
     @age = gets.chomp
+    print "Phone number : "
+    @phone = gets.chomp
     print "Aadhar Card Number : "
     @aadhar_card = gets.chomp
     print "Pan Card Number : "

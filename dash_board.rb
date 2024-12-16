@@ -15,8 +15,8 @@ class DashBoard
     when '1'
       registration = Registration.new
       registration.member_regsitration
-    # when '2'
-    #   member_details = MemberDetails.new
+    when '2'
+      member_details = MemberDetails.new
     # when '3'
     #   serch_member = SearchMember.new
     # when '4'
