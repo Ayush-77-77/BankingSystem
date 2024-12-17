@@ -1,5 +1,5 @@
 class Registration
-  @@account_number_increment = ""
+  @@account_number_increment = 0
   def initialize
     @account_holder = {}
   end
@@ -21,8 +21,8 @@ class Registration
     address = gets.chomp
      # calling account number generation
     account_number = account_number_generation  
-      account_holder = {
-      acccount_number: account_number,
+    account_holder = {
+      account_number: account_number,
       full_name: full_name,
       age: age,
       phone: phone,
@@ -36,7 +36,7 @@ class Registration
     @account_holder
   end
   def account_number_generation
-    @@account_number_increment =+ 11
+    @@account_number_increment += 11
     default_initial_value = 999999
     return default_initial_value + @@account_number_increment
   end
