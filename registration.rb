@@ -5,7 +5,8 @@ class Registration
   end
   
   def member_regsitration
-    puts "\t\tEnter the account holder details"  
+    puts "Enter the account holder details"  
+    puts "-"*40
     print "Full Name : "
     full_name = gets.chomp
     print "Age : "

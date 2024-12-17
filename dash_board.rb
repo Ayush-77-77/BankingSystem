@@ -6,14 +6,17 @@ class DashBoard
    
     
     while(true)
+      puts "-"*40
       puts "1. Registration"
       puts "2. Member details"
       puts "3. Search Member"
       puts "4. Transaction"
       puts "5. Exit"
-      
-      print "Please enter the value (1 to 5) : "
-      service_number = gets.chomp   
+      puts "-"*40
+      print "Please enter the value (1 to 5) : " 
+      service_number = gets.chomp  
+      puts "-"*40
+       
       
       break if(service_number == '5')
       
@@ -31,8 +34,9 @@ class DashBoard
       when '2'
         member_details = MemberDetails.new(@registration)
         member_details.display_all_members
-      # when '3'
-      #   serch_member = SearchMember.new
+      when '3'
+        search_member = SearchMember.new(@registration)
+        search_member.search_account_holder
       # when '4'
       #   transactions =  Transaction.new
       when '5'

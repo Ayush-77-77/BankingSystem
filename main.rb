@@ -2,7 +2,7 @@ require_relative 'dash_board'
 require_relative 'authentication'
 require_relative 'registration'
 require_relative 'member_details'
-
+require_relative 'search_member'
 class Main
   
 

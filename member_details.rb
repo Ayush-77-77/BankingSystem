@@ -6,10 +6,14 @@ class MemberDetails
   end
 
     def display_all_members()
-      # if @account_holder.empty?
-      #   puts "\nNo account holders registered yet."
-      # else
+      if @account_holder.empty?
+        puts "-"*40
+        puts "\nNo account holders registered yet."
+        puts "-"*40
+      else
+        puts "-"*40
         puts "\nAll Registered Account Holders:\n\n"
+        puts "-"*40
         @account_holder.each do |phone, details|
           puts "Phone Number : #{phone}"
           puts "Full Name    : #{details[:full_name]}"
@@ -18,7 +22,7 @@ class MemberDetails
           puts "PAN Card     : #{details[:pan_card]}"
           puts "Address      : #{details[:address]}"
           puts "-" * 40
-        # end
+        end
       end
     end    
 end
