@@ -3,8 +3,6 @@ class DashBoard
     @registration = Registration.new  # Initialize the registration object once
   end
   def dash_service
-   
-    
     while(true)
       puts "-"*40
       puts "1. Registration"
@@ -20,12 +18,12 @@ class DashBoard
       
       break if(service_number == '5')
       
-      goto_service(service_number)
+      go_to_service(service_number)
       
     end
   end
   
-  def goto_service(service_number)
+  def go_to_service(service_number)
     
     
       case service_number

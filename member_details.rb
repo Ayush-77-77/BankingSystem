@@ -14,13 +14,14 @@ class MemberDetails
         puts "-"*40
         puts "\nAll Registered Account Holders:\n\n"
         puts "-"*40
-        @account_holder.each do |phone, details|
-          puts "Phone Number : #{phone}"
-          puts "Full Name    : #{details[:full_name]}"
-          puts "Age          : #{details[:age]}"
-          puts "Aadhar Card  : #{details[:aadhar_card]}"
-          puts "PAN Card     : #{details[:pan_card]}"
-          puts "Address      : #{details[:address]}"
+        @account_holder.each do |account, details|
+          puts "Account Number : #{account}"
+          puts "Full Name      : #{details[:full_name]}"
+          puts "Age            : #{details[:age]}"
+          puts "Phone Number   : #{details[:phone]}"
+          puts "Aadhar Card    : #{details[:aadhar_card]}"
+          puts "PAN Card       : #{details[:pan_card]}"
+          puts "Address        : #{details[:address]}"
           puts "-" * 40
         end
       end
