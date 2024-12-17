@@ -26,7 +26,7 @@ class DashBoard
   def go_to_service(service_number)
       case service_number
       when '1'
-        @registration.member_registration
+        @registration.member_regsitration
       when '2'
         member_details = MemberDetails.new(@registration)
         member_details.display_all_members

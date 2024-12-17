@@ -4,7 +4,7 @@ class Registration
     @account_holder = {}
   end
   
-  def member_regsitration
+  def member_registration
     puts "Enter the account holder details"  
     puts "-"*40
     print "Full Name : "

@@ -3,9 +3,9 @@ require_relative 'authentication'
 require_relative 'registration'
 require_relative 'member_details'
 require_relative 'search_member'
-class Main
-  
+require_relative 'transactions'
 
+class Main
   def login()
     bank_employee = Authentication.new
     employee = bank_employee.user_authentication?("test@gmail.com", "test")
@@ -18,8 +18,6 @@ class Main
       puts "Email or password is wrong"
     end
   end 
-
-
 end
 
 
