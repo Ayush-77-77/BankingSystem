@@ -1,5 +1,24 @@
 class MemberDetails
-  def all_member_details
+  
+  def initialize(registration)
     
+    @account_holder = registration.get_all_account_holders
   end
+
+    def display_all_members()
+      # if @account_holder.empty?
+      #   puts "\nNo account holders registered yet."
+      # else
+        puts "\nAll Registered Account Holders:\n\n"
+        @account_holder.each do |phone, details|
+          puts "Phone Number : #{phone}"
+          puts "Full Name    : #{details[:full_name]}"
+          puts "Age          : #{details[:age]}"
+          puts "Aadhar Card  : #{details[:aadhar_card]}"
+          puts "PAN Card     : #{details[:pan_card]}"
+          puts "Address      : #{details[:address]}"
+          puts "-" * 40
+        # end
+      end
+    end    
 end
