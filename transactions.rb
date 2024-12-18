@@ -19,7 +19,7 @@ class Transactions
         puts "3. Account balance"
         puts "4. Fund Transfer"
         puts "5. Transaction History"
-        puts "5. Exit"
+        puts "6. Exit"
         puts "-"*40
         puts "Enter the value from 1 to 4"
         service_number = gets.chomp
@@ -38,6 +38,10 @@ class Transactions
         when '4'
           fund_transfer()
         when '5'
+          print "Enter the customer id : "
+          customer_id = gets.chomp.to_i
+          transaction_history(customer_id)
+        when '6'
           exit
         else
           puts "Wrong Input!! Please try a valid input from 1 to 4"
@@ -55,8 +59,9 @@ class Transactions
     transaction_id = {
       from_customer: customer_id,
       to_customer: nil,
-      status: "Success",
-      message: "" 
+      status: "Deposited",
+      message: "",
+      amount:deposit_amount
     }
     $transactions[$transaction_id] = transaction_id
     $transaction_id +=1
@@ -73,8 +78,9 @@ class Transactions
       transaction_id = {
         from_customer: customer_id,
         to_customer: nil,
-        status: "Success",
-        message: "" 
+        status: "withdraw",
+        message: "",
+        amount: withdrawal_amount
       }
       $transactions[$transaction_id] = transaction_id
       $transaction_id +=1
@@ -122,6 +128,28 @@ class Transactions
       deposit(to_customer_id, amount)
     end
   end
-  
+  def transaction_history(customer_id)
+    account_details = @account_holder[customer_id]
+    puts "-"*40
+    puts "Customer ID     : #{customer_id}"
+    puts "Account Number  : #{account_details[:account_number]}"
+    puts "Full Name       : #{account_details[:full_name]}"
+    puts "Account Balance : #{@account_transactions[customer_id][:account_balance]}"
+    puts "-"*40
+    puts "-"*40
+    puts "\tstatus\t|\tMessage\t|\tFrom\t|\tTo\t|\tAmount"
+    puts "-"*40
+    transactions_of_customer_id = $transactions.select do |transaction_id, transaction|
+      # puts "Checking transaction #{transaction_id}: #{transaction}"
+      transaction[:to_customer] == customer_id || transaction[:from_customer] == customer_id
+    end
+    # p transactions_of_customer_id
+    
+    transactions_of_customer_id.each do |transaction_id, values|
+      puts "\t#{values[:status]}\t|\t#{values[:message]}\t|\t#{values[:from_customer]}\t|\t#{values[:to_customer]}\t|\t#{values[:amount]}"
+    end
+    
+    
+  end
 
 end
