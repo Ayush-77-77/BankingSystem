@@ -1,14 +1,14 @@
 require_relative 'registration'
 class SearchMember
   def initialize(registration)
-    @account_holder = registration.get_all_account_holders
+    @account_holder = registration.account_holder
   end
   def search_account_holder
     if @account_holder.empty?
       puts "-"*40
       puts "\nNo account holders registered yet."
       puts "-"*40
-      return nil
+      return false
     else
       puts "-"*40
       print "Enter the customer id : "
@@ -27,11 +27,10 @@ class SearchMember
           puts "PAN Card       : #{account_details[:pan_card]}"
           puts "Address        : #{account_details[:address]}"
           puts "-" * 40
-          return customer_id
-      
+          return customer_id  
       else
           puts "Account not found!"
-          return nil
+          return false
       end
       
     end

@@ -1,9 +1,12 @@
 
 
 class Registration
+  attr_reader :account_holder, :account_transactions
   @@account_number_increment = 0
   def initialize  
     @account_holder = {}
+    @account_transactions = {}
+    
   end
   
   def member_registration
@@ -38,6 +41,13 @@ class Registration
         address: address
       }
       @account_holder[customer_id] = account_holder
+      @account_transactions[customer_id]={
+        account_number: account_number,
+        account_balance: 0,
+        transaction_type: { credit:0,
+                            debit: 0} 
+
+      }
       puts "-"*40
       puts "Account Created Successfull with the customer id #{customer_id} and account number #{account_number}"
       puts "-"*40
@@ -62,9 +72,6 @@ class Registration
     isValid # return value
   end
 
-  def get_all_account_holders
-    @account_holder
-  end
   def account_number_generation
     @@account_number_increment += 11
     default_initial_value = 999999

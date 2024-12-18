@@ -37,7 +37,7 @@ class DashBoard
         transaction =  Transactions.new(@registration)
         transaction.transaction_services
       when '5'
-        exti()
+        exit()
       else
         puts "Please enter a valid input"
       end

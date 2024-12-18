@@ -1,15 +1,17 @@
 require_relative 'registration'
+require_relative 'search_member'
 
 class Transactions
   def initialize(registration)
-    @account_holder = registration.get_all_account_holders
-    @account_number = {} # Initialize the account number storage
+    @account_holder = registration.account_holder
+    @account_transactions = registration.account_transactions # Initialize the account number storage
+    @customer_id = SearchMember.new(registration)
   end
 
   def transaction_services
-    # Getting the account number from the search_member
-    account_number = SearchMember.new(@account_holder).search_account_holder 
-    if account_number
+    
+     customer_id = @customer_id.search_account_holder 
+    if customer_id
         puts "-"*40
         puts "1. Deposit"
         puts "2. Withdraw"
@@ -21,11 +23,11 @@ class Transactions
 
         case service_number
         when '1'
-          deposit(account_number)
+          deposit(customer_id)
         when '2'
-          withdraw(account_number)
+          withdraw(customer_id)
         when '3'
-          account_balance(account_number)
+          account_balance(customer_id)
         when '4'
           exit
         else
@@ -36,30 +38,32 @@ class Transactions
     end
   end
 
-  def deposit(account_number)
+  def deposit(customer_id)
     puts "Enter the deposit amount"
     deposit_amount = gets.chomp.to_f
 
     
-    @account_holder[account_number][:account_balance] += deposit_amount
-    puts "Deposited #{deposit_amount} into account number #{account_number}. New balance: #{@account_holder[account_number][:account_balance]}"
+    @account_transactions[customer_id][:account_balance] += deposit_amount
+    @account_transactions[customer_id][:transaction_type][:credit] = deposit_amount
+    puts "Deposited #{deposit_amount} into account number #{customer_id}. New balance: #{@account_transactions[customer_id][:account_balance]}"
 
   end
 
-  def withdraw(account_number)
+  def withdraw(customer_id)
     puts "Enter the withdrawal amount"
     withdrawal_amount = gets.chomp.to_f
 
-    if @account_holder[account_number][:account_balance] >= withdrawal_amount
-      @account_holder[account_number][:account_balance] -= withdrawal_amount
-      puts "Withdrew #{withdrawal_amount} from account number #{account_number}. New balance: #{@account_holder[account_number][:account_balance]}"
+    if @account_transactions[customer_id][:account_balance] >= withdrawal_amount
+      @account_transactions[customer_id][:account_balance] -= withdrawal_amount
+      @account_transactions[customer_id][:transaction_type][:debit] = withdrawal_amount
+      puts "Withdrew #{withdrawal_amount} from account number #{customer_id}. New balance: #{@account_transactions[customer_id][:account_balance]}"
     else
       puts "Insufficient balance!"
     end
   end
 
-  def account_balance(account_number)
-    puts "Account Number  : #{account_number}"
-    puts "Account Balance : #{@account_holder[account_number][:account_balance]}"
+  def account_balance(customer_id)
+    puts "Account Number  : #{customer_id}"
+    puts "Account Balance : #{@account_transactions[customer_id][:account_balance]}"
   end
 end
