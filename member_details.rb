@@ -14,8 +14,9 @@ class MemberDetails
         puts "-"*40
         puts "\nAll Registered Account Holders:\n\n"
         puts "-"*40
-        @account_holder.each do |account, details|
-          puts "Account Number : #{account}"
+        @account_holder.each do |customer_id, details|
+          puts "Customer ID    : #{customer_id}"
+          puts "Account Number : #{details[:account]}"
           puts "Full Name      : #{details[:full_name]}"
           puts "Age            : #{details[:age]}"
           puts "Phone Number   : #{details[:phone]}"

@@ -1,4 +1,4 @@
-
+require_relative 'registration'
 
 class Transactions
   def initialize(registration)
@@ -40,7 +40,7 @@ class Transactions
     puts "Enter the deposit amount"
     deposit_amount = gets.chomp.to_f
 
-  
+    
     @account_holder[account_number][:account_balance] += deposit_amount
     puts "Deposited #{deposit_amount} into account number #{account_number}. New balance: #{@account_holder[account_number][:account_balance]}"
 
