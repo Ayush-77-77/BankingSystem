@@ -5,7 +5,6 @@ require_relative 'member_details'
 require_relative 'search_member'
 require_relative 'transactions'
 
-
 class Main
   def login()
     bank_employee = Authentication.new
